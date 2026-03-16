@@ -12,13 +12,38 @@ function createEleonCard(name) {
   card.id = `eleon-${name.replace(/\W/g, '').toLowerCase()}`;
 
   const img = document.createElement('img');
+  const baseName = name.replace('.png', '');
   img.src = `images/${name}`;
-  img.alt = name.replace('.png', '');
+  img.alt = baseName;
   img.className = 'eleon-img';
+
+  const shinyMap = {
+    bastolith: 'bastolith-shiny.png',
+    darkargarfio: 'dark-argarfio-shiny.png',
+    glassoraoffensive: 'glassora-offensive-shiny.png',
+    morterra: 'morterra-shiny.png',
+    quinferno: 'quinferno-shiny.png',
+    serpalisk: 'serpalisk_shiny.png',
+    victrious: 'victrious-shiny.png'
+  };
+
+  const shinyFile = shinyMap[baseName];
+  if (shinyFile) {
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', () => {
+      const isShiny = img.dataset.isShiny === 'true';
+      if (isShiny) {
+        img.src = `images/${baseName}.png`;
+      } else {
+        img.src = `images-shiny/${shinyFile}`;
+      }
+      img.dataset.isShiny = (!isShiny).toString();
+    });
+  }
 
   const eleonName = document.createElement('div');
   eleonName.className = 'eleon-name';
-  eleonName.textContent = name.replace('.png', '');
+  eleonName.textContent = baseName;
 
   card.appendChild(img);
   card.appendChild(eleonName);
@@ -39,6 +64,7 @@ function renderGallery(filter = '') {
     gallery.innerHTML = '<div style="color:#e17055;">No Eleon found.</div>';
   }
 }
+
 
 searchBar.addEventListener('input', e => {
   renderGallery(e.target.value);
@@ -68,3 +94,4 @@ document.head.appendChild(style);
 
 // Initial render
 renderGallery();
+
