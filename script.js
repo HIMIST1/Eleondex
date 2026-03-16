@@ -32,11 +32,9 @@ function createEleonCard(name) {
     img.style.cursor = 'pointer';
     img.addEventListener('click', () => {
       const isShiny = img.dataset.isShiny === 'true';
-      if (isShiny) {
-        img.src = `images/${baseName}.png`;
-      } else {
-        img.src = `images-shiny/${shinyFile}`;
-      }
+      const nextSrc = isShiny ? `images/${baseName}.png` : `images-shiny/${shinyFile}`;
+      console.log('shiny toggle:', baseName, '->', nextSrc);
+      img.src = nextSrc;
       img.dataset.isShiny = (!isShiny).toString();
     });
   }
