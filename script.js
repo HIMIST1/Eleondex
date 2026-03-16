@@ -19,7 +19,7 @@ function createEleonCard(name) {
 
   const shinyMap = {
     bastolith: 'bastolith-shiny.png',
-    agarfio: 'dark-argarfio-shiny.png',
+    argarfio: 'dark-argarfio-shiny.png',
     glassoraoffensive: 'glassora-offensive-shiny.png',
     morterra: 'morterra-shiny.png',
     quinferno: 'quinferno-shiny.png',
