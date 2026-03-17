@@ -93,4 +93,3 @@ document.head.appendChild(style);
 
 // Initial render
 renderGallery();
-
