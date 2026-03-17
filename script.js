@@ -54,7 +54,7 @@ function renderGallery(filter = '') {
   let found = false;
   eleons.forEach(name => {
     const displayName = name.replace('.png', '');
-    if (displayName.toLowerCase().includes(filter.toLowerCase())) {
+    if (displayName.toLowerCase().startsWith(filter.toLowerCase())) {
       gallery.appendChild(createEleonCard(name));
       found = true;
     }
@@ -93,3 +93,4 @@ document.head.appendChild(style);
 
 // Initial render
 renderGallery();
+
