@@ -53,12 +53,11 @@ function createEleonCard(name) {
 
 function renderGallery(filter = '') {
   gallery.innerHTML = '';
-  let found = false;
+  const matchingEleons = [];
   eleons.forEach(name => {
     const displayName = name.replace('.png', '');
     if (displayName.toLowerCase().startsWith(filter.toLowerCase())) {
-      gallery.appendChild(createEleonCard(name));
-      found = true;
+      matchingEleons.push(name);
     }
   });
   if (!found) {
