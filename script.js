@@ -60,8 +60,15 @@ function renderGallery(filter = '') {
       matchingEleons.push(name);
     }
   });
-  if (!found) {
+
+  if (matchingEleons.length === 0) {
     gallery.innerHTML = '<div style="color:#e17055;">No Eleon found.</div>';
+  } else {
+    matchingEleons.forEach((name, index) => {
+      setTimeout(() => {
+        gallery.appendChild(createEleonCard(name));
+      }, index * 50); // 50ms delay between each card for ripple effect
+    });
   }
 }
 
@@ -94,3 +101,4 @@ document.head.appendChild(style);
 
 // Initial render
 renderGallery();
+
