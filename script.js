@@ -29,6 +29,7 @@ function createEleonCard(name) {
 
   const shinyFile = shinyMap[baseName];
   if (shinyFile) {
+    card.classList.add('has-shiny');
     img.style.cursor = 'pointer';
     img.addEventListener('click', () => {
       const isShiny = img.dataset.isShiny === 'true';
@@ -92,3 +93,4 @@ document.head.appendChild(style);
 
 // Initial render
 renderGallery();
+
