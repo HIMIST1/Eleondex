@@ -16,8 +16,6 @@ function createEleonCard(name) {
   img.src = `images/${name}`;
   img.alt = baseName;
   img.className = 'eleon-img';
-  img.loading = 'lazy';
-  img.decoding = 'async';
 
   const shinyMap = {
     bastolith: 'bastolith-shiny.png',
@@ -53,22 +51,16 @@ function createEleonCard(name) {
 
 function renderGallery(filter = '') {
   gallery.innerHTML = '';
-  const matchingEleons = [];
+  let found = false;
   eleons.forEach(name => {
     const displayName = name.replace('.png', '');
-    if (displayName.toLowerCase().startsWith(filter.toLowerCase())) {
-      matchingEleons.push(name);
+    if (displayName.toLowerCase().includes(filter.toLowerCase())) {
+      gallery.appendChild(createEleonCard(name));
+      found = true;
     }
   });
-
-  if (matchingEleons.length === 0) {
+  if (!found) {
     gallery.innerHTML = '<div style="color:#e17055;">No Eleon found.</div>';
-  } else {
-    matchingEleons.forEach((name, index) => {
-      setTimeout(() => {
-        gallery.appendChild(createEleonCard(name));
-      }, index * 50); // 50ms delay between each card for ripple effect
-    });
   }
 }
 
@@ -101,4 +93,3 @@ document.head.appendChild(style);
 
 // Initial render
 renderGallery();
-
