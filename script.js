@@ -16,6 +16,8 @@ function createEleonCard(name) {
   img.src = `images/${name}`;
   img.alt = baseName;
   img.className = 'eleon-img';
+  img.loading = 'lazy';
+  img.decoding = 'async';
 
   const shinyMap = {
     bastolith: 'bastolith-shiny.png',
@@ -29,7 +31,6 @@ function createEleonCard(name) {
 
   const shinyFile = shinyMap[baseName];
   if (shinyFile) {
-    console.log('Adding has-shiny to', baseName);
     card.classList.add('has-shiny');
     img.style.cursor = 'pointer';
     img.addEventListener('click', () => {
